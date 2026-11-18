@@ -7,3 +7,6 @@ Python · Docker · Git · Bash · AWS (S3, ECS) · Terraform · GitHub Actions
 
 ## Scripts
 - `scripts/check-tools.sh` — checks that all required tools are installed
+
+## Status
+Lesson 2: Git basics ✅
