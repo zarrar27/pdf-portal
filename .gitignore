@@ -1,0 +1,19 @@
+# macOS system files
+.DS_Store
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+
+# Secrets and local config — NEVER commit these
+.env
+*.pem
+
+# Terraform
+.terraform/
+*.tfstate
+*.tfstate.*
+
+# Personal notes
+notes.txt
