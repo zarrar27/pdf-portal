@@ -17,3 +17,6 @@ __pycache__/
 
 # Personal notes
 notes.txt
+
+# Sample PDFs for local testing
+sample-pdfs/*.pdf
