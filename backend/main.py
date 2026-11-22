@@ -7,11 +7,14 @@ from botocore.config import Config
 from botocore.exceptions import ClientError
 from fastapi import FastAPI, HTTPException
 from fastapi.responses import RedirectResponse
+from fastapi.middleware.cors import CORSMiddleware
+
 
 S3_BUCKET = os.environ["S3_BUCKET"]
 S3_PREFIX = os.getenv("S3_PREFIX", "pdfs/")
 URL_EXPIRY_SECONDS = int(os.getenv("URL_EXPIRY_SECONDS", "300"))
 AWS_REGION = os.environ["AWS_REGION"]
+CORS_ORIGINS = [o.strip() for o in os.getenv("CORS_ORIGINS", "").split(",") if o.strip()]
 
 s3 = boto3.client(
     "s3",
@@ -21,6 +24,8 @@ s3 = boto3.client(
 )
 
 app = FastAPI(title="PDF Portal API", version="0.2.0")
+if CORS_ORIGINS:
+    app.add_middleware(CORSMiddleware, allow_origins=CORS_ORIGINS, allow_methods=["GET"])
 
 
 @app.get("/health")
