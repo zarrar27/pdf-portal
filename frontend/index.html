@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PDF Portal</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <h1>PDF Portal</h1>
+    <p>Read or download documents stored in AWS S3.</p>
+  </header>
+
+  <main>
+    <section id="library">
+      <h2>Documents <span id="count"></span></h2>
+      <p id="status">Loading…</p>
+      <ul id="pdf-list"></ul>
+    </section>
+
+    <section id="viewer" hidden>
+      <div class="viewer-bar">
+        <h2 id="viewer-title"></h2>
+        <button id="close-viewer" type="button">Close</button>
+      </div>
+      <iframe id="viewer-frame" title="PDF viewer"></iframe>
+    </section>
+  </main>
+
+  <script src="config.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
