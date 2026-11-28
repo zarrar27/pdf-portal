@@ -1,0 +1,33 @@
+name: pdf-portal
+
+services:
+  api:
+    build: ./backend
+    image: pdf-portal-api:dev
+    env_file:
+      - ./backend/.env
+    environment:
+      CORS_ORIGINS: ""
+      AWS_ACCESS_KEY_ID:
+      AWS_SECRET_ACCESS_KEY:
+      AWS_SESSION_TOKEN:
+    expose:
+      - "8000"
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8000/health')"]
+      interval: 10s
+      timeout: 3s
+      retries: 3
+      start_period: 5s
+    restart: unless-stopped
+
+  web:
+    build: ./frontend
+    image: pdf-portal-web:dev
+    ports:
+      - "127.0.0.1:8080:80"
+    depends_on:
+      api:
+        condition: service_healthy
+    restart: unless-stopped
+    
